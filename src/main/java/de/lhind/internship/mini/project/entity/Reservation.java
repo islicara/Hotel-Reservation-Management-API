@@ -111,6 +111,6 @@ public class Reservation {
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
     private Guest guest;
 }
