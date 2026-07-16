@@ -12,12 +12,10 @@ public class GlobalExceptionHandler {
     // 500 INTERNAL SERVER ERROR - catch-all, generic message per "Best Practices" slide
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneric(Exception ex, HttpServletRequest request) {
-        ErrorResponse body = ErrorResponse.builder()
-                .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                .error(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())
-                .message("An unexpected error occurred")
-                .path(request.getRequestURI())
-                .build();
+        ErrorResponse body = new ErrorResponse();
+                body.setError(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
+                body.setMessage("An unexpected error occurred");
+                body.setPath(request.getRequestURI());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
