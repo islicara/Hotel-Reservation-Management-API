@@ -48,6 +48,6 @@ public class HotelController {
 
     @GetMapping("/search")
     public ResponseEntity<List<Hotel>> searchByCity(@RequestParam String city) {
-        return ResponseEntity.ok(hotelService.searchByCity(city));
+        return ResponseEntity.ok(hotelService.searchHotelsByCity(city));
     }
 }
