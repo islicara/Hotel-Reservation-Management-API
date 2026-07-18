@@ -1,10 +1,10 @@
 package de.lhind.internship.mini.project.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "reservation")
@@ -13,16 +13,16 @@ public class Reservation {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
-    private String checkInDate;
-    private String checkOutDate;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
     private int numberOfGuests;
-    private long totalPrice;
-    private boolean status;
-    private String createdAt;
+    private BigDecimal totalPrice;
+    private ReservationStatus status;
+    private LocalDateTime createdAt;
 
     public Reservation() {}
 
-    public Reservation(int id, String checkInDate, String checkOutDate, int numberOfGuests, long totalPrice, boolean status, String createdAt, Room room, Guest guest) {
+    public Reservation(int id, LocalDate checkInDate, LocalDate checkOutDate, int numberOfGuests, BigDecimal totalPrice, ReservationStatus status, LocalDateTime createdAt, Room room, Guest guest) {
         this.id = id;
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
@@ -42,19 +42,19 @@ public class Reservation {
         this.id = id;
     }
 
-    public String getCheckInDate() {
+    public LocalDate getCheckInDate() {
         return checkInDate;
     }
 
-    public void setCheckInDate(String checkInDate) {
+    public void setCheckInDate(LocalDate checkInDate) {
         this.checkInDate = checkInDate;
     }
 
-    public String getCheckOutDate() {
+    public LocalDate getCheckOutDate() {
         return checkOutDate;
     }
 
-    public void setCheckOutDate(String checkOutDate) {
+    public void setCheckOutDate(LocalDate checkOutDate) {
         this.checkOutDate = checkOutDate;
     }
 
@@ -66,27 +66,27 @@ public class Reservation {
         this.numberOfGuests = numberOfGuests;
     }
 
-    public long getTotalPrice() {
+    public BigDecimal getTotalPrice() {
         return totalPrice;
     }
 
-    public void setTotalPrice(long totalPrice) {
+    public void setTotalPrice(BigDecimal totalPrice) {
         this.totalPrice = totalPrice;
     }
 
-    public boolean isStatus() {
+    public ReservationStatus isStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(ReservationStatus status) {
         this.status = status;
     }
 
-    public String getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

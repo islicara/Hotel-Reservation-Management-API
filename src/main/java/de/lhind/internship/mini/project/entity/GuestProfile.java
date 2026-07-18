@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "reservation")
 public class GuestProfile {
@@ -14,13 +16,13 @@ public class GuestProfile {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
     private String address;
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
     private String nationality;
     private String preferredLanguage;
 
    public GuestProfile(){}
 
-    public GuestProfile(int id, String address, String dateOfBirth, String nationality, String preferredLanguage, Guest guest) {
+    public GuestProfile(int id, String address, LocalDate dateOfBirth, String nationality, String preferredLanguage, Guest guest) {
         this.id = id;
         this.address = address;
         this.dateOfBirth = dateOfBirth;
@@ -45,11 +47,11 @@ public class GuestProfile {
         this.address = address;
     }
 
-    public String getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(String dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

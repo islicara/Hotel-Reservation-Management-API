@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,15 +16,15 @@ public class Room {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long id;
-    private int roomNumber;
-    private String roomType;
+    private String roomNumber;
+    private RoomType roomType;
     private int capacity;
-    private long pricePerNight;
-    private boolean status;
+    private BigDecimal pricePerNight;
+    private RoomStatus status;
 
     public Room() {}
 
-    public Room(long id, int roomNumber, String roomType, int capacity, long pricePerNight, boolean status, Hotel hotel, List<Reservation> reservations) {
+    public Room(long id, String roomNumber, RoomType roomType, int capacity, BigDecimal pricePerNight, RoomStatus status, Hotel hotel, List<Reservation> reservations) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.roomType = roomType;
@@ -42,19 +43,19 @@ public class Room {
         this.id = id;
     }
 
-    public int getRoomNumber() {
+    public String getRoomNumber() {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(String roomNumber) {
         this.roomNumber = roomNumber;
     }
 
-    public String getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
@@ -66,19 +67,19 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public long getPricePerNight() {
+    public BigDecimal getPricePerNight() {
         return pricePerNight;
     }
 
-    public void setPricePerNight(long pricePerNight) {
+    public void setPricePerNight(BigDecimal pricePerNight) {
         this.pricePerNight = pricePerNight;
     }
 
-    public boolean isStatus() {
+    public RoomStatus getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(RoomStatus status) {
         this.status = status;
     }
 
