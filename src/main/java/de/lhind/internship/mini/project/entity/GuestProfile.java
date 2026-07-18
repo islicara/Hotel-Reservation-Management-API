@@ -1,5 +1,6 @@
 package de.lhind.internship.mini.project.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,15 +10,20 @@ import lombok.Setter;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "reservation")
+@Table(name = "guest_profiles")
 public class GuestProfile {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
     private String address;
+
+    @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
+
     private String nationality;
+
+    @Column(name = "preferred_language")
     private String preferredLanguage;
 
    public GuestProfile(){}
@@ -80,6 +86,7 @@ public class GuestProfile {
     }
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "guest_id", referencedColumnName = "id")
+    @JsonBackReference("guest-profile")
     private Guest guest;
 }

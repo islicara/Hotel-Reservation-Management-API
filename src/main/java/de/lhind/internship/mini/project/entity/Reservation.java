@@ -7,17 +7,29 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "reservation")
+@Table(name = "reservations")
 public class Reservation {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "check_in_date")
     private LocalDate checkInDate;
+
+    @Column(name = "check_out_date")
     private LocalDate checkOutDate;
+
+    @Column(name = "number_of_guests")
     private int numberOfGuests;
+
+    @Column(name = "total_price")
     private BigDecimal totalPrice;
+
+    @Enumerated(EnumType.STRING)
     private ReservationStatus status;
+
+    @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
 
     public Reservation() {}
@@ -107,7 +119,7 @@ public class Reservation {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
     private Room room;
 
     @ManyToOne(fetch = FetchType.LAZY)

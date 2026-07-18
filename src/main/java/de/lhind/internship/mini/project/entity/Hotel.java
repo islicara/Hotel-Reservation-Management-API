@@ -1,6 +1,8 @@
 package de.lhind.internship.mini.project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,17 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "hotel")
+@Table(name = "hotels")
 public class Hotel {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long id;
 
-
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "city")
     private String city;
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "star_rating")
+    @Min(1) @Max(5)
     private int starRating;
 
     public Hotel(){}

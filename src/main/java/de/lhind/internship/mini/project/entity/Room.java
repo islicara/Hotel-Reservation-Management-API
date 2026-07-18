@@ -1,6 +1,7 @@
 package de.lhind.internship.mini.project.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,15 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "room")
+@Table(name = "rooms")
 public class Room {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "room_number")
     private String roomNumber;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "room_type")
     private RoomType roomType;
+
+    @Min(1)
     private int capacity;
+
+    @Column(name = "price_per_night")
     private BigDecimal pricePerNight;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
     private RoomStatus status;
 
     public Room() {}
@@ -100,7 +113,7 @@ public class Room {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JoinColumn(name = "hotel_id", referencedColumnName = "id")
     private Hotel hotel;
 
     @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)

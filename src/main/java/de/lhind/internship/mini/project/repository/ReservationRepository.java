@@ -18,7 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
         SELECT COUNT(r) 
         FROM Reservation r 
         WHERE r.room.id = :roomId 
-          AND r.status <> 'CANCELLED' 
+          AND str(r.status) <> 'CANCELLED' 
           AND r.checkInDate < :checkOutDate 
           AND r.checkOutDate > :checkInDate
     """)
